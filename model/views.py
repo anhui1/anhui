@@ -13,22 +13,28 @@ class UserForm(forms.Form):
 
 #注册
 def regist(req):
+    print "regist"
+  
     if req.method == 'POST':
         uf = UserForm(req.POST)
         if uf.is_valid():
-            #获得表单数据
+        #获得表单数据
+            print "valid"
             username = uf.cleaned_data['username']
             password = uf.cleaned_data['password']
             #添加到数据库
             User.objects.create(username= username,password=password)
-            return HttpResponse('regist success!!')
+            print "success"
+            response=HttpResponse()
+            response.write("<script>alert('注册成功');location='/login/login/';</script>") 
+            return response
     else:
         uf = UserForm()
     return render_to_response('regist.html',{'uf':uf}, context_instance=RequestContext(req))
 
 #登陆
 def login(req):
-    print "here"
+    #print req.method
     if req.method == 'POST':
         uf = UserForm(req.POST)
         if uf.is_valid():
@@ -39,12 +45,14 @@ def login(req):
             user = User.objects.filter(username__exact = username,password__exact = password)
             if user:
                 #比较成功，跳转index
+                print "success"
                 response = HttpResponseRedirect('/login/index/')
                 #将username写入浏览器cookie,失效时间为3600
                 response.set_cookie('username',username,3600)
                 return response
             else:
                 #比较失败，还在login
+                print "failed"
                 return HttpResponseRedirect('/login/login/')
     else:
         uf = UserForm()
