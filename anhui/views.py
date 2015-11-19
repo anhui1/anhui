@@ -7,4 +7,4 @@ from django import forms
 def test(request):
     context          = {}
     context['hello'] = 'Hello World!'
-    return render(request, 'test.html', context)
+    return render(request, 'extend.html', context)

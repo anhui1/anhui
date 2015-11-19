@@ -80,8 +80,8 @@ DATABASES = {'default': {
         'NAME': 'orcl',  #注意这儿是sid不是SERVICE_NAME
         'USER': 'anhui',
         'PASSWORD': 'anhui',
-        'HOST': '127.0.0.1',
-        'PORT': '1521',
+        'HOST': '111.204.220.230',
+        'PORT': '15001',
 }}
 
 
