@@ -46,7 +46,7 @@ def login(req):
             if user:
                 #比较成功，跳转index
                 print "success"
-                response = HttpResponseRedirect('/login/index/')
+                response = HttpResponseRedirect('/totalView/')
                 #将username写入浏览器cookie,失效时间为3600
                 response.set_cookie('username',username,3600)
                 return response
@@ -65,7 +65,8 @@ def index(req):
 
 #退出
 def logout(req):
-    response = HttpResponse('logout !!')
+    response=HttpResponse()
     #清理cookie里保存username
     response.delete_cookie('username')
-    return response
+    return HttpResponseRedirect('/login/login/')
+

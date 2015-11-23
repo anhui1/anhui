@@ -8,3 +8,7 @@ def test(request):
     context          = {}
     context['hello'] = 'Hello World!'
     return render(request, 'extend.html', context)
+
+def totalView(req):
+    return render_to_response('total_view.html',{},context_instance=RequestContext(req))
+

@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 
 from django.contrib import admin
 from django.conf import settings
-from views import test
+from views import *
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -11,7 +11,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/', include('model.urls')),
-    url(r'^test/',test),
+    url(r'^totalView/$',totalView,name = 'totalView'),
     (r'^static/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.STATIC_URL}),
                 
 )
